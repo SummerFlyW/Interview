@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+    //第一题
+	function generateItems(specs) {
+		let newArr = [];
+		specs.forEach((item) => {
+			let arrItem = [];
+            item.types.forEach((type) => {
+            	arrItem.push({[item.id]:type})
+            	return arrItem
+            })
+            newArr.push(arrItem)
+        })
+        return newArr.reduce((pre, item) => {//reduce() 方法接收一个函数作为累加器,reduce 为数组中的每一个元素依次执行回调函数，不包括数组中被删除或从未被赋值的元素，接受四个参数：初始值（上一次回调的返回值），当前元素值，当前索引，原数组。
+    	    let result = []
+    	    pre.forEach((v, i) =>{
+                item.forEach((y,i) => result.push({...v, ...y}))//将一个数组转为用逗号分隔的参数序列
+            })
+            return result
+        }) 
+	}
+	let arr = [{"id":"17","caption":"颜色","types":["黑","棕"]},{"id":"23","caption":"材质","types":["牛皮"]},{"id":"24","caption":"尺码","types":["40","41","42"]}];
+	//generateItems(arr);
+	console.log(generateItems(arr));
+</script>
+</html>

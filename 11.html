@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+	const obj = {
+　　    say(){
+　　　　    Array.from(arguments).forEach(item=>{//Array.from()方法就是将一个类数组对象或者可遍历对象转换成一个真正的数组。
+　　　　　　    console.log(`${this.str} ${item}`)
+　　　　    })
+　　    }
+    }
+    Object.defineProperties(obj, {//方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。如果不指定configurable, writable, enumerable ，则这些属性默认值为false，如果不指定value, get, set，则这些属性默认值为undefined    Object.defineProperty(obj, prop, descriptor)  obj: 需要被操作的目标对象
+//prop: 目标对象需要定义或修改的属性的名称
+//descriptor: 将被定义或修改的属性的描述符
+        'str':{
+  　　　    value:'hello',
+            writable:false
+        }
+    });        
+    var objZH={};          
+    Object.defineProperties(objZH, {
+        'str':{
+            value:'你好',
+            writable:false
+        }
+    });
+     /*方法1*/
+    function f() {
+        obj.say.call(objZH,...arguments);
+    }
+    f('foo');
+    f('foo','bar');
+    /*方法2*/
+    const f1=obj.say.bind(objZH);
+    f1('foo');
+    f1('foo','bar');
+    //三者的区别：apply（）接受两个参数，第一个事要绑定的this指向的对象，第二个是一个包含多个参数的数组。
+    //call() 和apply()的区别在于第二个参数不同，call（）接受多干个参数列表
+    //bind()方法创建一个新的函数,当被调用时，将其this关键字设置为提供的值，在调用新函数时，在任何提供之前提供一个给定的参数序列。需要手动调用。
+
+    /*方法3*/
+    function Person(){
+        this.str=objZH.str;
+        this.say=obj.say;
+    }
+    const f2 = new Person();
+    f2.say("foo");
+    f2.say("foo",'bar');                
+
+</script>
+</html>

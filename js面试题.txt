@@ -1,0 +1,41 @@
+﻿### 问题1
+请实现一个函数`function generateItems(specs)`，接受类似如下的输入数组（例子）:
+```javascript
+[{"id":"17","caption":"颜色","types":["黑","棕"]},
+{"id":"23","caption":"材质","types":["牛皮"]},
+{"id":"24","caption":"尺码","types":["40","41","42"]}]
+```
+数组中的每个对象包含id，caption和types三个属性，其中types是包含复数个字符串的数组
+此函数对上述例子输入应当输出如下结果：
+```javascript
+[{"17":"黑","23":"牛皮","24":"40"},
+{"17":"黑","23":"牛皮","24":"41"},
+{"17":"黑","23":"牛皮","24":"42"},
+{"17":"棕","23":"牛皮","24":"40"},
+{"17":"棕","23":"牛皮","24":"41"},
+{"17":"棕","23":"牛皮","24":"42"}]
+
+### 问题2
+现有如下代码:
+```javascript
+created() {
+  this.interval = setInterval(async () => {
+      const resp = await getNewStatistics();
+      this.rows = resp.rows;
+    }, 500);
+}
+destroyed() {
+  clearInterval(this.interval);
+}
+```
+其中getNewStatistics()是访问后端的异步操作
+1. 发现异步操作getNewStatistics()返回速度有点慢, 导致操作出现堆积, 现要求实现一个函数 `setIntervalWaitable(callback, ms)` 代替上述代码中的`setInterval`，要求异步函数callback完成后，等待ms的时间，再重新执行callback
+2. 将1中的`setIntervalWaitable`函数的行为修改为如下方式该怎么实现：
+  * 等待传入的ms时间，如果此时callback已经完成，重新执行callback
+  * 否则，等待callback完成，之后立刻重新执行callback
+3. (选答)为上面实现的setIntervalWaitable函数提供一个可停止实现，用于代码中的destroyed()方法当中
+
+
+```
+
+

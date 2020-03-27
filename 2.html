@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+	let arr = Array.from({length:1001}, (v,k) => k);
+    function objectEqual(a, b) {
+        if (a === b) return true;
+        let aProps = Object.getOwnPropertyNames(a);
+        let bProps = Object.getOwnPropertyNames(b);
+        if (aProps.length !== bProps.length) return false;
+        for (let prop in a) {
+            if (b.hasOwnProperty(prop)) {
+                if (typeof a[prop] === 'object') {
+                    if (!objectEqual(a[prop], b[prop])) return false;
+                } else if (a[prop] !== b[prop]) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+</script>
+</html>

@@ -1,0 +1,21 @@
+/* 请在下方完成你的作答 */
+.answer-container {
+  min-height: 300px;
+}
+.add-button {
+  margin-right: 10px;
+}
+.grid-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 200px;
+  margin-top: 10px;
+}
+.grid-item {
+  text-align: center;
+  line-height: 60px;
+  width: 60px;
+  height: 60px;
+  font-size: 20px;
+  border: 1px solid #d8d8d8;
+}
